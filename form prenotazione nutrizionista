@@ -1,0 +1,46 @@
+<?php
+
+// Controllo che il form sia stato inviato
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Recupero i dati dal form
+    $nome      = trim($_POST["nome"]);
+    $email     = trim($_POST["email"]);
+    $telefono  = trim($_POST["telefono"]);
+    $tipo      = trim($_POST["tipo_visita"]);
+    $data      = trim($_POST["data"]);
+    $ora       = trim($_POST["ora"]);
+    $messaggio = trim($_POST["messaggio"]);
+
+    // Controllo campi obbligatori
+    if ($nome == "" || $email == "" || $telefono == "" || $tipo == "" || $data == "" || $ora == "") {
+        echo "Errore: per favore compila tutti i campi obbligatori.";
+        exit;
+    }
+
+    // Creazione del contenuto dell'email
+    $to = "tua-email@example.com";  // <-- METTI QUI LA TUA EMAIL
+    $subject = "Nuova richiesta di prenotazione";
+    
+    $body = "Hai ricevuto una nuova richiesta di prenotazione:\n\n";
+    $body .= "Nome: $nome\n";
+    $body .= "Email: $email\n";
+    $body .= "Telefono: $telefono\n";
+    $body .= "Tipo di visita: $tipo\n";
+    $body .= "Data: $data\n";
+    $body .= "Orario preferito: $ora\n";
+    $body .= "Messaggio:\n$messaggio\n";
+
+    $headers = "From: $email";
+
+    // Invio della mail
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Grazie, la tua richiesta è stata inviata con successo!";
+    } else {
+        echo "Si è verificato un errore durante l'invio. Riprova più tardi.";
+    }
+
+} else {
+    echo "Accesso non valido a questa pagina.";
+}
+?>
