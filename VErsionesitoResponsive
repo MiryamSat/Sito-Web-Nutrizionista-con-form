@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia Montanari – Nutrizionista</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+            background-color: #f7fbff;
+        }
+
+        /*SEZIONE DEDICATA AL MENU*/
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            color: black;
+            padding: 15px;
+            background-color: #a2f476;
+            margin: 0;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            display: inline-block;
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+
+        nav a:hover{
+            text-decoration: none;
+            background-color: #f7f7f2;
+            color: #333;
+        }
+
+        nav a:active {
+            color: #333;
+        }
+
+        nav a:link, nav a:visited {
+            color: #333; 
+        }
+
+        /*SEZIONE DELLA TESTATA*/
+        .t-header {
+            text-align: center;
+            padding: 0 12px;
+        }
+
+        /* SEZIONE PRESENTAZIONE */
+        .presentazione-mission {
+            padding: 40px 20px;
+        }
+
+        .presentazione-grid {
+            display: flex;
+            gap: 30px;
+            max-width: 1100px;
+            margin: auto;
+            align-items: center;
+        }
+
+        .presentazione-testo {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .presentazione-img {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* DIV con background-image (quello che usi in linea) */
+        .presentazione-img {
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background-size: cover;
+            background-position: center;
+            min-height: 320px;
+        }
+
+        /* IMMAGINE dentro .presentazione-img */
+        .presentazione-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: none; /* lo gestiamo già a livello di container */
+            display: block;
+        }
+
+        /* SEZIONE RICETTE */
+        .t-ricette {
+            text-align: center;
+            padding: 0 12px;
+        }
+
+        .grid-recensioni {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card-r {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .card-r:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+
+        /* IMMAGINI COVER */
+        .card-r figure {
+            margin: 0;
+        }
+
+        .card-r img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-r figcaption {
+            text-align: center;
+        }
+
+        /* SEZIONE "DICONO DI NOI" */
+        .dicono-di-noi {
+              padding: 40px 20px;
+        }
+
+        .dicono-di-noi h1 {
+               text-align: center;
+               margin-bottom: 30px;
+               padding: 0 12px;
+        }
+
+        .grid-recensioni {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 20px;
+              max-width: 1100px;
+              margin: auto;
+        }
+
+        .card-recensioni {
+            border: 1px solid black;
+            background-color: #a2f476;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .card-recensioni .testo {
+            font-style: italic;
+        }
+
+        .card-recensioni .nome {
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* SEZIONE FORM */
+        .btnPrenotazione {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 14px;
+            font-size: medium;
+            background-color: #4CAF50;
+            border-color: #a2f476;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: min(320px, 92vw);
+        }
+
+        .btnPrenotazione:hover {
+           background-color: #38aa0a;
+        }
+
+        .f-prenotazione {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 12px;
+        }
+
+        .f-prenotazione input,
+        .f-prenotazione select,
+        .f-prenotazione textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px; /* importante su mobile per evitare zoom */
+        }
+
+        /* RESPONSIVE - SMARTPHONE */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 10px;
+            }
+
+            nav a {
+                width: 100%;
+                padding: 12px 14px;
+                text-align: center;
+            }
+
+            .presentazione-mission,
+            .dicono-di-noi {
+                padding: 24px 14px;
+            }
+
+            .presentazione-grid {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .presentazione-img {
+                min-width: 0;
+                min-height: 220px;
+                width: 100%;
+            }
+
+            .card-r img {
+                height: 170px;
+            }
+
+            .grid-recensioni {
+                gap: 14px;
+                padding: 0 6px;
+            }
+
+            h1, h2 {
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#">Chi sono</a></li>
+            <li><a href="#">Prenota una visita</a></li>
+            <li><a href="#">Le mie ricette</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 class="t-header">Il tuo benessere comincia dal nutrimento del tuo corpo!</h1>
+        <h2 class="t-header">Dott.ssa Sofia Montanari – Biologa Nutrizionista</h2>
+    </header>
+
+    <section class="presentazione-mission">
+        <div class="presentazione-grid">
+            <div class="presentazione-testo">
+                <p>
+                    Mi chiamo <strong>Sofia Montanari</strong> e sono una biologa nutrizionista.
+                    Aiuto le persone a trovare il proprio equilibrio attraverso un’alimentazione
+                    consapevole, costruendo piani nutrizionali adatti alle loro esigenze:
+                    <strong>onnivori, vegetariani, vegani, sportivi o chi ha necessità specifiche.</strong>
+                </p>
+
+                <p>
+                    Per me una dieta non significa rinuncia, ma scoperta: imparare a nutrirsi
+                    in modo equilibrato, ascoltarsi e amare il proprio corpo ogni giorno un po’ di più.
+                </p>
+
+                <p>
+                    Mi sono formata a Milano, dove ho approfondito un approccio moderno e umano
+                    alla nutrizione, unendo scienza, ascolto e personalizzazione. Oggi accompagno
+                    i miei pazienti lungo tutto il percorso, passo dopo passo, con l’obiettivo di
+                    aiutarli a costruire abitudini sane, realistiche e durature.
+                </p>
+
+                <p>
+                    Il mio lavoro è guidarti verso un benessere che sia davvero tuo: semplice,
+                    sostenibile e in armonia con la tua vita.
+                </p>
+            </div>
+
+            <div class="presentazione-img">
+                <img src="https://elty.it/cdn-cgi/image/width=2048,format=auto,quality=90/https://a.storyblok.com/f/268930/1000x667/10ac45ab61/nutrizionista-online.jpg" alt="Nutrizionista online">
+            </div>
+        </div>
+    </section>
+
+    <section class="ricette">
+        <h1 class="t-ricette">Le mie ricette</h1>
+
+        <div class="grid-recensioni">
+            <div class="card-r">
+                <figure>
+                    <img src="https://www.gruppomacro.com/data/blog/fb_resolution/d/dieta-chetogenica-menu-ricette.jpg">
+                    <figcaption>I miei piatti unici</figcaption>
+                </figure>
+            </div>
+
+            <div class="card-r">
+                <figure>
+                    <img src="https://www.pastatoscana.it/img/news/i-vegani-mangiano-pasta.jpeg" alt="pasta vegana">
+                    <figcaption>I miei piatti vegani</figcaption>
+                </figure>
+            </div>
+
+            <div class="card-r">
+                <figure>
+                    <img src="https://www.fattoincasadabenedetta.it/wp-content/uploads/2024/03/pancake-proteici-16-9.jpg" alt="pancake proteici">
+                    <figcaption>I miei dolci</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="dicono-di-noi">
+        <h1>Dicono di me</h1>
+        <div class="grid-recensioni">
+            <div class="card-recensioni">
+                <p class="testo">"Insieme alla nutrizionista Sofia ho imparato il giusto equilibrio a tavola e sono riuscito a ritrovare il peso ideale e finalmente a fare tutte le cose che non riuscivo a fare. Adesso faccio lunghe passeggiate con i miei nipoti senza sentirmi affaticato!"</p>
+                <p class="nome"> -Paolo B.</p>
+            </div>
+
+            <div class="card-recensioni">
+                <p class="testo">“Mi ha seguito nel mio percorso sportivo creando un piano su misura. Risultati visibili e zero stress!</p>
+                <p class="nome"> -Andrea M.</p>
+            </div>
+
+            <div class="card-recensioni">
+                <p class="testo">“Finalmente una nutrizionista che ascolta davvero! Ho una dieta vegetariana e ha saputo valorizzarla senza stravolgere le mie abitudini.”</p>
+                <p class="nome"> -Marta V.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="prenota-visita">
+        <button id="mostraForm" class="btnPrenotazione">Prenota una visita</button>
+
+        <form id="formPrenotazione" class="f-prenotazione" action="formPrenotazione.php" method="post"
+              style="max-width: 500px; display: none; flex-direction: column; gap: 15px;">
+
+            <label>
+                Nome e Cognome:
+                <input type="text" name="nome" required
+                       placeholder="Inserisci il tuo nome completo">
+            </label>
+
+            <label>
+                Email:
+                <input type="email" name="email" required
+                       placeholder="nome@email.com">
+            </label>
+
+            <label>
+                Telefono:
+                <input type="tel" name="telefono" required
+                       placeholder="123 456 7890">
+            </label>
+
+            <label>
+                Tipo di visita:
+                <select name="tipo_visita" required>
+                    <option value="">Seleziona...</option>
+                    <option value="prima-visita">Prima visita</option>
+                    <option value="controllo">Visita di controllo</option>
+                    <option value="sportiva">Consulenza sportiva</option>
+                    <option value="vegan">Piano nutrizionale vegano/vegetariano</option>
+                    <option value="personalizzato">Percorso personalizzato</option>
+                </select>
+            </label>
+
+            <label>
+                Data della visita:
+                <input type="date" name="data" required>
+            </label>
+
+            <label>
+                Orario preferito:
+                <input type="time" name="ora" required>
+            </label>
+
+            <label>
+                Messaggio (opzionale):
+                <textarea name="messaggio" rows="4"
+                          placeholder="Scrivi qui eventuali richieste o informazioni utili..."></textarea>
+            </label>
+
+            <button type="submit"
+                    style="padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+                Invia richiesta
+            </button>
+        </form>
+
+        <script>
+            document.getElementById('mostraForm').addEventListener("click", function(){
+                document.getElementById("formPrenotazione").style.display = "flex";
+                this.style.display = "none";
+            });
+        </script>
+    </section>
+
+</body>
+</html>
